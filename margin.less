@@ -1,0 +1,128 @@
+//
+// margin.less - Written by github@ovdsteen
+//
+// --------------------------------------------------
+@margin-xs: 25px;
+@margin-sm: 50px;
+@margin-md: 60px;
+@margin-lg: 100px;
+
+@margin-md-factor: 80;
+@margin-sm-factor: 60;
+@margin-xs-factor: 30;
+
+@debug:0;
+
+// mixin
+.margin(@top; @bottom; @responsive:1) {
+    margin-top: @top;
+    margin-bottom: @bottom;
+    & when ( @debug = 1) {
+        border: 1px dashed #eee;
+        position: relative;
+    }
+    & when ( @responsive = 1) {
+        @media (min-width: @screen-lg-min) {
+            & when ( @debug = 1) {
+                background: #800040;
+            }
+        }
+        @media (max-width: @screen-md-max) {
+            margin-top: ceil((@top/100)*@margin-md-factor);
+            margin-bottom: ceil((@bottom/100)*@margin-md-factor);
+            & when ( @debug = 1) {
+                background: #0080ff;
+            }
+        }
+        @media (max-width: @screen-sm-min) {
+            margin-top: ceil((@top/100)*@margin-sm-factor);
+            margin-bottom: ceil((@bottom/100)*@margin-sm-factor);
+            & when ( @debug = 1) {
+                background: #7f7f7f;
+            }
+        }
+        @media (max-width: @screen-xs) {
+            margin-top: ceil((@top/100)*@margin-xs-factor);
+            margin-bottom: ceil((@bottom/100)*@margin-xs-factor);
+            & when ( @debug = 1) {
+                background: #ff8000;
+            }
+        }
+    }
+}
+// phone portrait
+.margin-xs{
+    .margin(@margin-xs,@margin-xs);
+}
+.margin-xs-top{
+    .margin(@margin-xs,0);
+}
+.margin-xs-bottom{
+    .margin(0,@margin-xs);
+}
+.margin-xs-noresize{
+    .margin(@margin-xs,@margin-xs,0);
+}
+.margin-xs-top-noresize{
+    .margin(@margin-xs,0,0);
+}
+.margin-xs-bottom-noresize{
+    .margin(0,@margin-xs,0);
+}
+// iPad portrait | phone landscape
+.margin-sm{
+    .margin(@margin-sm,@margin-sm);
+}
+.margin-sm-top{
+    .margin(@margin-sm,0);
+}
+.margin-sm-bottom{
+    .margin(0,@margin-sm);
+}
+.margin-sm-noresize{
+    .margin(@margin-sm,@margin-sm,0);
+}
+.margin-sm-top-noresize{
+    .margin(@margin-sm,0,0);
+}
+.margin-sm-bottom-noresize{
+    .margin(0,@margin-sm,0);
+}
+// medium laptop | iPad landscape
+.margin-md{
+    .margin(@margin-md,@margin-md);
+}
+.margin-md-top{
+    .margin(@margin-md,0);
+}
+.margin-md-bottom{
+    .margin(0,@margin-md);
+}
+.margin-md-noresize{
+    .margin(@margin-md,@margin-md,0);
+}
+.margin-md-top-noresize{
+    .margin(@margin-md,0,0);
+}
+.margin-md-bottom-noresize{
+    .margin(0,@margin-md,0);
+}
+// desktop | large laptop
+.margin-lg{
+    .margin(@margin-lg,@margin-lg);
+}
+.margin-lg-top{
+    .margin(@margin-lg,0);
+}
+.margin-lg-bottom{
+    .margin(0,@margin-lg);
+}
+.margin-lg-noresize{
+    .margin(@margin-lg,@margin-lg,0);
+}
+.margin-lg-top-noresize{
+    .margin(@margin-lg,0,0);
+}
+.margin-lg-bottom-noresize{
+    .margin(0,@margin-lg,0);
+}
