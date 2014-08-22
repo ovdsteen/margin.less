@@ -2,6 +2,8 @@
 // margin.less - Written by github@ovdsteen
 //
 // --------------------------------------------------
+
+// variable
 @margin-xs: 25px;
 @margin-sm: 50px;
 @margin-md: 75px;
@@ -15,8 +17,12 @@
 
 // mixin
 .margin(@top; @bottom; @responsive:1) {
-    margin-top: @top;
-    margin-bottom: @bottom;
+    & when ( @top > 0) {
+        margin-top: @top;
+    }
+    & when ( @bottom > 0) {
+        margin-bottom: @bottom;
+    }
     & when ( @debug = 1) {
         border: 1px dashed #eee;
         position: relative;
@@ -28,22 +34,34 @@
             }
         }
         @media (max-width: @screen-md-max) {
-            margin-top: ceil((@top/100)*@margin-md-factor);
-            margin-bottom: ceil((@bottom/100)*@margin-md-factor);
+            & when ( @top > 0) {
+                margin-top: ceil((@top/100)*@margin-md-factor);
+            }
+            & when ( @bottom > 0) {
+                margin-bottom: ceil((@bottom/100)*@margin-md-factor);
+            }
             & when ( @debug = 1) {
                 background: #0080ff;
             }
         }
         @media (max-width: @screen-sm-min) {
-            margin-top: ceil((@top/100)*@margin-sm-factor);
-            margin-bottom: ceil((@bottom/100)*@margin-sm-factor);
+            & when ( @top > 0) {
+                margin-top: ceil((@top/100)*@margin-sm-factor);
+            }
+            & when ( @bottom > 0) {
+                margin-bottom: ceil((@bottom/100)*@margin-sm-factor);
+            }
             & when ( @debug = 1) {
                 background: #7f7f7f;
             }
         }
         @media (max-width: @screen-xs) {
-            margin-top: ceil((@top/100)*@margin-xs-factor);
-            margin-bottom: ceil((@bottom/100)*@margin-xs-factor);
+            & when ( @top > 0) {
+                margin-top: ceil((@top/100)*@margin-xs-factor);
+            }
+            & when ( @bottom > 0) {
+                margin-bottom: ceil((@bottom/100)*@margin-xs-factor);
+            }
             & when ( @debug = 1) {
                 background: #ff8000;
             }
